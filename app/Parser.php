@@ -1,7 +1,9 @@
 <?php
+
 namespace app;
 
-class Parser{
+class Parser
+{
 
     protected $provinceDictPath = '';
 
@@ -9,11 +11,12 @@ class Parser{
 
     protected $countyDictPath = '';
 
+    protected $address = '';
 
-    public function __construct()
+
+    public function __construct(string $address)
     {
-
-
+        $this->address = $address;
     }
 
     /**
@@ -22,8 +25,9 @@ class Parser{
      * @author GlaryJoker
      * @since 2021/1/25 10:07
      */
-    public function setProvinceDict(string $path){
-        if(!file_exists($path)){
+    public function setProvinceDict(string $path)
+    {
+        if (!file_exists($path)) {
             throw new \Exception("省份字典`{$path}`不存在");
         }
         $this->provinceDictPath = $path;
@@ -36,8 +40,9 @@ class Parser{
      * @author GlaryJoker
      * @since 2021/1/25 10:07
      */
-    public function setCityDict(string $path){
-        if(!file_exists($path)){
+    public function setCityDict(string $path)
+    {
+        if (!file_exists($path)) {
             throw new \Exception("城市字典`{$path}`不存在");
         }
         $this->cityDictPath = $path;
@@ -50,21 +55,33 @@ class Parser{
      * @author GlaryJoker
      * @since 2021/1/25 10:07
      */
-    public function setCountyDict(string $path){
-        if(!file_exists($path)){
+    public function setCountyDict(string $path)
+    {
+        if (!file_exists($path)) {
             throw new \Exception("区/县字典`{$path}`不存在");
         }
         $this->countyDictPath = $path;
         return $this;
     }
 
+
     /**
      * 获取省份
      * @author GlaryJoker
      * @since 2021/1/25 10:02
      */
-    public function getProvince(){
+    public function getProvince()
+    {
+        $provinces = json_decode(file_get_contents($this->provinceDictPath));
+        $result = false;
+        foreach ($provinces as $province) {
+            $names = explode('/', $province->name);
 
+            for($i=0;$i<count($names);$i++){
+
+            }
+        }
+        return $result;
     }
 
     /**
@@ -72,7 +89,8 @@ class Parser{
      * @author GlaryJoker
      * @since 2021/1/25 10:02
      */
-    public function getCity(){
+    public function getCity()
+    {
 
     }
 
@@ -81,12 +99,20 @@ class Parser{
      * @author GlaryJoker
      * @since 2021/1/25 10:02
      */
-    public function getCounty(){
+    public function getCounty()
+    {
 
     }
+
 }
 
-$path = __DIR__.'/../dict/city.json';
-$cities = file_get_contents($path);
+$path = __DIR__ . '/../dict/provinces.json';
+$provinces = file_get_contents($path);
 
-$cities = json_decode($cities);
+$provinces = json_decode($provinces);
+
+foreach ($provinces as $province){
+    $province->name = explode('/',$province->name)[0];
+}
+
+file_put_contents($path,json_encode($provinces,JSON_UNESCAPED_LINE_TERMINATORS|JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE));
