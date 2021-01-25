@@ -5,6 +5,8 @@ namespace app;
 class Parser
 {
 
+    protected $defaultProvinces;
+
     protected $provinceDictPath = '';
 
     protected $cityDictPath = '';
@@ -14,7 +16,7 @@ class Parser
     protected $address = '';
 
 
-    public function __construct(string $address)
+    public function __construct(string $address = null)
     {
         $this->address = $address;
     }
@@ -72,13 +74,25 @@ class Parser
      */
     public function getProvince()
     {
-        $provinces = json_decode(file_get_contents($this->provinceDictPath));
+        $provinces = json_decode(file_get_contents(__DIR__.'/../dict/provinces.json'));
+
         $result = false;
         foreach ($provinces as $province) {
-            $names = explode('/', $province->name);
-
+            $names = explode('/', $province->keywords);
+            $preg = false;
             for($i=0;$i<count($names);$i++){
+                if(preg_match('/'.$names[$i].'/',$this->address)){
+                    $preg = true;
+                    break;
+                }
+            }
 
+            if($preg){
+                $result = [
+                    'code' => $province->code,
+                    'name' => $province->name
+                ];
+                break;
             }
         }
         return $result;
@@ -106,13 +120,8 @@ class Parser
 
 }
 
-$path = __DIR__ . '/../dict/provinces.json';
+/*$path = __DIR__ . '/../dict/provinces.json';
 $provinces = file_get_contents($path);
 
 $provinces = json_decode($provinces);
-
-foreach ($provinces as $province){
-    $province->name = explode('/',$province->name)[0];
-}
-
-file_put_contents($path,json_encode($provinces,JSON_UNESCAPED_LINE_TERMINATORS|JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE));
+*/
