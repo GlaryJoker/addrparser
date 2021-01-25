@@ -1,0 +1,11 @@
+{
+    "name": "glaryjoker/addrparser",
+    "description": "/",
+    "authors": [
+        {
+            "name": "GlaryJoker",
+            "email": "glaryjoker@gmail.com"
+        }
+    ],
+    "require": {}
+}
