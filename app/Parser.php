@@ -120,8 +120,16 @@ class Parser
 
 }
 
-/*$path = __DIR__ . '/../dict/provinces.json';
-$provinces = file_get_contents($path);
+$path = __DIR__ . '/../dict/county.json';
+$counties = file_get_contents($path);
 
-$provinces = json_decode($provinces);
-*/
+$counties = json_decode($counties);
+
+print_r(count($counties));
+
+foreach ($counties as $county){
+    $tmpName = str_replace('县','', $county->name);
+    $county->keywords = $county->name.'/'.$tmpName;
+}
+
+file_put_contents($path,json_encode($counties,JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_LINE_TERMINATORS|JSON_UNESCAPED_UNICODE));
