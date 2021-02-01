@@ -24,10 +24,10 @@ class Parser
     /**
      * 设置省份字典地址
      * @param string $path
-     * @author GlaryJoker
+     * @author www.iplayio.cn
      * @since 2021/1/25 10:07
      */
-    public function setProvinceDict(string $path)
+    public function setCustomProvinceDict(string $path)
     {
         if (!file_exists($path)) {
             throw new \Exception("省份字典`{$path}`不存在");
@@ -37,12 +37,12 @@ class Parser
     }
 
     /**
-     * 设置省份字典地址
+     * 设置自定义省份字典地址
      * @param string $path
-     * @author GlaryJoker
+     * @author www.iplayio.cn
      * @since 2021/1/25 10:07
      */
-    public function setCityDict(string $path)
+    public function setCustomCityDict(string $path)
     {
         if (!file_exists($path)) {
             throw new \Exception("城市字典`{$path}`不存在");
@@ -52,12 +52,12 @@ class Parser
     }
 
     /**
-     * 设置区县字典地址
+     * 设置自定义区县字典地址
      * @param string $path
-     * @author GlaryJoker
+     * @author www.iplayio.cn
      * @since 2021/1/25 10:07
      */
-    public function setCountyDict(string $path)
+    public function setCustomCountyDict(string $path)
     {
         if (!file_exists($path)) {
             throw new \Exception("区/县字典`{$path}`不存在");
@@ -69,29 +69,26 @@ class Parser
 
     /**
      * 获取省份
-     * @author GlaryJoker
+     * @author www.iplayio.cn
      * @since 2021/1/25 10:02
      */
     public function getProvince()
     {
-        $provinces = json_decode(file_get_contents(__DIR__.'/../dict/provinces.json'));
+        $provinces = Dict::getProvinces();
 
         $result = false;
         foreach ($provinces as $province) {
             $names = explode('/', $province->keywords);
             $preg = false;
-            for($i=0;$i<count($names);$i++){
-                if(preg_match('/'.$names[$i].'/',$this->address)){
+            for ($i = 0; $i < count($names); $i++) {
+                if (preg_match('/' . $names[$i] . '/', $this->address)) {
                     $preg = true;
                     break;
                 }
             }
 
-            if($preg){
-                $result = [
-                    'code' => $province->code,
-                    'name' => $province->name
-                ];
+            if ($preg) {
+                $result = $province;
                 break;
             }
         }
@@ -100,7 +97,7 @@ class Parser
 
     /**
      * 获取城市
-     * @author GlaryJoker
+     * @author www.iplayio.cn
      * @since 2021/1/25 10:02
      */
     public function getCity()
@@ -110,26 +107,44 @@ class Parser
 
     /**
      * 获取区或者县
-     * @author GlaryJoker
+     * @author www.iplayio.cn
      * @since 2021/1/25 10:02
      */
     public function getCounty()
     {
+        $counties =  Dict::getCounies();
+        $result = false;
 
+        foreach ($counties as $county){
+            $preg = false;
+            if(preg_match('/'.$county->name.'/',$this->address)){
+                $preg = true;
+                break;
+            }else{
+                $keywords = explode('/',$county->keywords);
+                $kwLength = count($keywords);
+                for($i=0;$i<$kwLength;$i++){
+                    if(preg_match('/'.$keywords[$i].'/',$this->address)){
+                        $preg = true;
+                        break;
+                    }
+                }
+            }
+            if($preg){
+                $result = $county;
+                break;
+            }
+        }
+        //如果查询到，根据区或者县获取地级市或者省份
+        if($result){
+            $parents = Finder::getParentsOfCountyCode($result->code);
+        }
+        
+        return $result;
     }
 
+
 }
 
-$path = __DIR__ . '/../dict/county.json';
-$counties = file_get_contents($path);
-
-$counties = json_decode($counties);
-
-print_r(count($counties));
-
-foreach ($counties as $county){
-    $tmpName = str_replace('县','', $county->name);
-    $county->keywords = $county->name.'/'.$tmpName;
-}
-
-file_put_contents($path,json_encode($counties,JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_LINE_TERMINATORS|JSON_UNESCAPED_UNICODE));
+$re = new Parser("河南省灵宝");
+var_dump($re->getCounty());
