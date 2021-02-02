@@ -21,6 +21,7 @@ class Finder
         $result = false;
         foreach (Dict::getProvinces() as $province){
             if($province->code === $provinceCode){
+                $province->score = 0;
                 $result = $province;
                 break;
             }
@@ -37,6 +38,7 @@ class Finder
         $result = false;
         foreach (Dict::getCities() as $city){
             if($city->code === $cityCode){
+                $city->score = 0;
                 $result = $city;
                 break;
             }
@@ -53,6 +55,7 @@ class Finder
         $result = false;
         foreach (Dict::getCities() as $county){
             if($county->code === $countyCode){
+                $county->score = 0;
                 $result = $county;
                 break;
             }

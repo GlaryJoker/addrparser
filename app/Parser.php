@@ -4,21 +4,28 @@ namespace Addrparser;
 
 class Parser
 {
-    protected static $address = '';
+    protected  $address = '';
 
-    protected static $resultProvince = [];
-    protected static $resultCity = [];
-    protected static $resultCounty = [];
+    private $provinces;
+    private $cities;
+    private $counties;
 
+    protected $resultProvinces = [];
+
+    protected $resultCities = [];
+
+    protected $resultCounties = [];
 
     public function __construct()
     {
-
+        $this->provinces = Dict::getProvinces();
+        $this->cities = Dict::getCities();
+        $this->counties = Dict::getCounies();
     }
 
-    public static function setAddress($address){
-        self::$address = $address;
-        return new self();
+    public function setAddress($address){
+        $this->address = $address;
+        return $this;
     }
 
     /**
@@ -26,21 +33,22 @@ class Parser
      * @author www.iplayio.cn
      * @since 2021/1/25 10:02
      */
-    protected static function parseProvince()
+    protected  function parseProvince()
     {
-        $provinces = Dict::getProvinces();
+        $this->resultProvinces = [];
 
-        foreach ($provinces as $province) {
+        foreach ($this->provinces as $province) {
             $names = explode('/', $province->keywords);
             for ($i = 0; $i < count($names); $i++) {
-                if (preg_match('/' . $names[$i] . '/', self::$address)) {
+                if (preg_match('/' . $names[$i] . '/', $this->address)) {
                     $result[] = $province;
-                    self::$address = mb_substr(self::$address,mb_strlen($names[$i]));
-                    self::$resultProvince[] = $province;
+                    $province->score = $i;
+                    $this->resultProvinces[] = $province;
                     break;
                 }
             }
         }
+        return $this;
     }
 
     /**
@@ -48,24 +56,26 @@ class Parser
      * @author www.iplayio.cn
      * @since 2021/1/25 10:02
      */
-    protected static function parseCity()
+    protected  function parseCity()
     {
-        $cities = Dict::getCities();
-
-        foreach ($cities as $city){
+        $this->resultCities = [];
+        foreach ($this->cities as $city){
             $keywords = explode('/',$city->keywords);
             $kwLength = count($keywords);
             for($i=0;$i<$kwLength;$i++){
-                if(preg_match('/'.$keywords[$i].'/',self::$address)){
-                    self::$resultCity[] = $city;
+                if(preg_match('/'.$keywords[$i].'/',$this->address)){
+                    $city->score = $i;
+                    $this->resultCities[] = $city;
                     break;
                 }
             }
         }
 
-        foreach (self::$resultCity as $city){
-            self::$resultProvince[] = Finder::getProvinceByCode($city->provinceCode);
+        foreach ($this->resultCities as $city){
+            $this->resultProvinces[] = Finder::getProvinceByCode($city->provinceCode);
         }
+
+        return $this;
     }
 
     /**
@@ -73,29 +83,33 @@ class Parser
      * @author www.iplayio.cn
      * @since 2021/1/25 10:02
      */
-    protected static function parseCounty()
+    protected  function parseCounty()
     {
-        $counties =  Dict::getCounies();
-
-        foreach ($counties as $county){
+        $this->resultCounties = [];
+        foreach ($this->counties as $county){
             $keywords = explode('/',$county->keywords);
             $kwLength = count($keywords);
             for($i=0;$i<$kwLength;$i++){
-                if(preg_match('/'.$keywords[$i].'/',self::$address)){
-                    self::$resultCounty[] = $county;
+                if(preg_match('/'.$keywords[$i].'/',$this->address)){
+                    $county->score = $i;
+                    $this->resultCounties[] = $county;
                     break;
                 }
             }
         }
         //获取到区县，然后获得市，如果省份为空则获得省份。
 
-        foreach (self::$resultCounty as $county){
-            self::$resultCity[] = Finder::getCityByCode($county->cityCode);
+        foreach ($this->resultCounties as $county){
+            $this->resultCities[] = Finder::getCityByCode($county->cityCode);
         }
+        return $this;
     }
 
-    public function parseAll(){
-
+    protected function parseAll(){
+        $this->parseProvince();
+        $this->parseCounty();
+        $this->parseCity();
+        return $this;
     }
 
     /**
@@ -103,36 +117,42 @@ class Parser
      * @author www.iplayio.cn
      * @since 2021/2/2 12:54
      */
-    public static function getAll(){
-        self::parseProvince();
-        self::parseCounty();
-        self::parseCity();
+    public function getAll(){
+        $this->parseAll();
         return [
-            'provinces' => self::getProvince(),
-            'cities' => self::getCity(),
-            'counties' => self::getCounty(),
+            'provinces' => $this->resultProvinces,
+            'cities' => $this->resultCities,
+            'counties' => $this->resultCounties,
         ];
     }
 
-    public static function getCity(){
-        self::parseCity();
-        return self::removeDuplicate(self::$resultCity);
+    public function getCity(){
+        $this->parseCity();
+        return $this->removeDuplicate($this->resultCities);
     }
 
-    public static function getCounty(){
-        self::parseCounty();
-        return self::removeDuplicate(self::$resultCounty);
+    public function getCounty(){
+
+        return self::removeDuplicate($this->resultCounties);
     }
 
-    public static function getProvince(){
-        self::parseProvince();
-         return self::removeDuplicate(self::$resultProvince);
+    public function getProvince(){
+         return self::removeDuplicate($this->resultProvinces);
     }
 
-    protected static function removeDuplicate(array $array = []){
+    protected function removeDuplicate(array $array = []){
         $cityCodes = array_unique(array_column($array,'code'));
         $exitsCode = [];
         $resultArray = [];
+
+        //先获取score为0的，然后去除其他的，如果没有为0的，返回其他匹配到数字
+        $array = array_filter($array,function($item){
+            return $item->score === 0;
+        });
+
+        if(count($array) === 1){
+            return $array;
+        }
 
         foreach ($array as $city){
             if(in_array($city->code,$cityCodes) && !in_array($city->code,$exitsCode)){
@@ -146,8 +166,7 @@ class Parser
     }
 
     public function getAddress(){
-        return self::$address;
+        return $this->address;
     }
-
 
 }
