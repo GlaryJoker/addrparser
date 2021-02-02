@@ -1,98 +1,46 @@
 <?php
 
-namespace app;
+namespace Addrparser;
 
 class Parser
 {
+    protected static $address = '';
 
-    protected $defaultProvinces;
-
-    protected $provinceDictPath = '';
-
-    protected $cityDictPath = '';
-
-    protected $countyDictPath = '';
-
-    protected $address = '';
+    protected static $resultProvince = [];
+    protected static $resultCity = [];
+    protected static $resultCounty = [];
 
 
-    public function __construct(string $address = null)
+    public function __construct()
     {
-        $this->address = $address;
+
     }
 
-    /**
-     * 设置省份字典地址
-     * @param string $path
-     * @author www.iplayio.cn
-     * @since 2021/1/25 10:07
-     */
-    public function setCustomProvinceDict(string $path)
-    {
-        if (!file_exists($path)) {
-            throw new \Exception("省份字典`{$path}`不存在");
-        }
-        $this->provinceDictPath = $path;
-        return $this;
+    public static function setAddress($address){
+        self::$address = $address;
+        return new self();
     }
-
-    /**
-     * 设置自定义省份字典地址
-     * @param string $path
-     * @author www.iplayio.cn
-     * @since 2021/1/25 10:07
-     */
-    public function setCustomCityDict(string $path)
-    {
-        if (!file_exists($path)) {
-            throw new \Exception("城市字典`{$path}`不存在");
-        }
-        $this->cityDictPath = $path;
-        return $this;
-    }
-
-    /**
-     * 设置自定义区县字典地址
-     * @param string $path
-     * @author www.iplayio.cn
-     * @since 2021/1/25 10:07
-     */
-    public function setCustomCountyDict(string $path)
-    {
-        if (!file_exists($path)) {
-            throw new \Exception("区/县字典`{$path}`不存在");
-        }
-        $this->countyDictPath = $path;
-        return $this;
-    }
-
 
     /**
      * 获取省份
      * @author www.iplayio.cn
      * @since 2021/1/25 10:02
      */
-    public function getProvince()
+    protected static function parseProvince()
     {
         $provinces = Dict::getProvinces();
 
-        $result = false;
         foreach ($provinces as $province) {
             $names = explode('/', $province->keywords);
-            $preg = false;
             for ($i = 0; $i < count($names); $i++) {
-                if (preg_match('/' . $names[$i] . '/', $this->address)) {
-                    $preg = true;
+                if (preg_match('/' . $names[$i] . '/', self::$address)) {
+                    $result[] = $province;
+                    self::$address = mb_substr(self::$address,mb_strlen($names[$i]));
+                    self::$resultProvince[] = $province;
                     break;
                 }
             }
-
-            if ($preg) {
-                $result = $province;
-                break;
-            }
         }
-        return $result;
     }
 
     /**
@@ -100,9 +48,24 @@ class Parser
      * @author www.iplayio.cn
      * @since 2021/1/25 10:02
      */
-    public function getCity()
+    protected static function parseCity()
     {
+        $cities = Dict::getCities();
 
+        foreach ($cities as $city){
+            $keywords = explode('/',$city->keywords);
+            $kwLength = count($keywords);
+            for($i=0;$i<$kwLength;$i++){
+                if(preg_match('/'.$keywords[$i].'/',self::$address)){
+                    self::$resultCity[] = $city;
+                    break;
+                }
+            }
+        }
+
+        foreach (self::$resultCity as $city){
+            self::$resultProvince[] = Finder::getProvinceByCode($city->provinceCode);
+        }
     }
 
     /**
@@ -110,41 +73,81 @@ class Parser
      * @author www.iplayio.cn
      * @since 2021/1/25 10:02
      */
-    public function getCounty()
+    protected static function parseCounty()
     {
         $counties =  Dict::getCounies();
-        $result = false;
 
         foreach ($counties as $county){
-            $preg = false;
-            if(preg_match('/'.$county->name.'/',$this->address)){
-                $preg = true;
-                break;
-            }else{
-                $keywords = explode('/',$county->keywords);
-                $kwLength = count($keywords);
-                for($i=0;$i<$kwLength;$i++){
-                    if(preg_match('/'.$keywords[$i].'/',$this->address)){
-                        $preg = true;
-                        break;
-                    }
+            $keywords = explode('/',$county->keywords);
+            $kwLength = count($keywords);
+            for($i=0;$i<$kwLength;$i++){
+                if(preg_match('/'.$keywords[$i].'/',self::$address)){
+                    self::$resultCounty[] = $county;
+                    break;
                 }
             }
-            if($preg){
-                $result = $county;
-                break;
+        }
+        //获取到区县，然后获得市，如果省份为空则获得省份。
+
+        foreach (self::$resultCounty as $county){
+            self::$resultCity[] = Finder::getCityByCode($county->cityCode);
+        }
+    }
+
+    public function parseAll(){
+
+    }
+
+    /**
+     * 处理
+     * @author www.iplayio.cn
+     * @since 2021/2/2 12:54
+     */
+    public static function getAll(){
+        self::parseProvince();
+        self::parseCounty();
+        self::parseCity();
+        return [
+            'provinces' => self::getProvince(),
+            'cities' => self::getCity(),
+            'counties' => self::getCounty(),
+        ];
+    }
+
+    public static function getCity(){
+        self::parseCity();
+        return self::removeDuplicate(self::$resultCity);
+    }
+
+    public static function getCounty(){
+        self::parseCounty();
+        return self::removeDuplicate(self::$resultCounty);
+    }
+
+    public static function getProvince(){
+        self::parseProvince();
+         return self::removeDuplicate(self::$resultProvince);
+    }
+
+    protected static function removeDuplicate(array $array = []){
+        $cityCodes = array_unique(array_column($array,'code'));
+        $exitsCode = [];
+        $resultArray = [];
+
+        foreach ($array as $city){
+            if(in_array($city->code,$cityCodes) && !in_array($city->code,$exitsCode)){
+                array_push($exitsCode,$city->code);
+                $resultArray[] = $city;
+                continue;
             }
         }
-        //如果查询到，根据区或者县获取地级市或者省份
-        if($result){
-            $parents = Finder::getParentsOfCountyCode($result->code);
-        }
-        
-        return $result;
+
+        return $resultArray;
+    }
+
+    public function getAddress(){
+        return self::$address;
     }
 
 
 }
-
-$re = new Parser("河南省灵宝");
-var_dump($re->getCounty());

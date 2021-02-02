@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Addrparser;
 
 /**
  * 获取

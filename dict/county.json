@@ -354,7 +354,7 @@
     "name": "赵县",
     "cityCode": "1301",
     "provinceCode": "13",
-    "keywords": "赵县/赵"
+    "keywords": "赵县"
   },
   {
     "code": "130171",
@@ -648,21 +648,21 @@
     "name": "涉县",
     "cityCode": "1304",
     "provinceCode": "13",
-    "keywords": "涉县/涉"
+    "keywords": "涉县"
   },
   {
     "code": "130427",
     "name": "磁县",
     "cityCode": "1304",
     "provinceCode": "13",
-    "keywords": "磁县/磁"
+    "keywords": "磁县"
   },
   {
     "code": "130430",
     "name": "邱县",
     "cityCode": "1304",
     "provinceCode": "13",
-    "keywords": "邱县/邱"
+    "keywords": "邱县"
   },
   {
     "code": "130431",
@@ -690,7 +690,7 @@
     "name": "魏县",
     "cityCode": "1304",
     "provinceCode": "13",
-    "keywords": "魏县/魏"
+    "keywords": "魏县"
   },
   {
     "code": "130435",
@@ -816,7 +816,7 @@
     "name": "威县",
     "cityCode": "1305",
     "provinceCode": "13",
-    "keywords": "威县/威"
+    "keywords": "威县"
   },
   {
     "code": "130534",
@@ -914,7 +914,7 @@
     "name": "唐县",
     "cityCode": "1306",
     "provinceCode": "13",
-    "keywords": "唐县/唐"
+    "keywords": "唐县"
   },
   {
     "code": "130628",
@@ -956,7 +956,7 @@
     "name": "易县",
     "cityCode": "1306",
     "provinceCode": "13",
-    "keywords": "易县/易"
+    "keywords": "易县"
   },
   {
     "code": "130634",
@@ -970,7 +970,7 @@
     "name": "蠡县",
     "cityCode": "1306",
     "provinceCode": "13",
-    "keywords": "蠡县/蠡"
+    "keywords": "蠡县"
   },
   {
     "code": "130636",
@@ -991,7 +991,7 @@
     "name": "雄县",
     "cityCode": "1306",
     "provinceCode": "13",
-    "keywords": "雄县/雄"
+    "keywords": "雄县"
   },
   {
     "code": "130671",
@@ -1110,7 +1110,7 @@
     "name": "蔚县",
     "cityCode": "1307",
     "provinceCode": "13",
-    "keywords": "蔚县/蔚"
+    "keywords": "蔚县"
   },
   {
     "code": "130727",
@@ -1271,14 +1271,14 @@
     "name": "沧县",
     "cityCode": "1309",
     "provinceCode": "13",
-    "keywords": "沧县/沧"
+    "keywords": "沧县"
   },
   {
     "code": "130922",
     "name": "青县",
     "cityCode": "1309",
     "provinceCode": "13",
-    "keywords": "青县/青"
+    "keywords": "青县"
   },
   {
     "code": "130923",
@@ -1327,7 +1327,7 @@
     "name": "献县",
     "cityCode": "1309",
     "provinceCode": "13",
-    "keywords": "献县/献"
+    "keywords": "献县"
   },
   {
     "code": "130930",
@@ -1523,7 +1523,7 @@
     "name": "景县",
     "cityCode": "1311",
     "provinceCode": "13",
-    "keywords": "景县/景"
+    "keywords": "景县"
   },
   {
     "code": "131128",
@@ -1712,21 +1712,21 @@
     "name": "城区",
     "cityCode": "1403",
     "provinceCode": "14",
-    "keywords": "城区/城"
+    "keywords": "城区"
   },
   {
     "code": "140303",
     "name": "矿区",
     "cityCode": "1403",
     "provinceCode": "14",
-    "keywords": "矿区/矿"
+    "keywords": "矿区"
   },
   {
     "code": "140311",
     "name": "郊区",
     "cityCode": "1403",
     "provinceCode": "14",
-    "keywords": "郊区/郊"
+    "keywords": "郊区"
   },
   {
     "code": "140321",
@@ -1740,7 +1740,7 @@
     "name": "盂县",
     "cityCode": "1403",
     "provinceCode": "14",
-    "keywords": "盂县/盂"
+    "keywords": "盂县"
   },
   {
     "code": "140403",
@@ -1817,7 +1817,7 @@
     "name": "沁县",
     "cityCode": "1404",
     "provinceCode": "14",
-    "keywords": "沁县/沁"
+    "keywords": "沁县"
   },
   {
     "code": "140431",
@@ -1838,7 +1838,7 @@
     "name": "城区",
     "cityCode": "1405",
     "provinceCode": "14",
-    "keywords": "城区/城"
+    "keywords": "城区"
   },
   {
     "code": "140521",
@@ -1901,7 +1901,7 @@
     "name": "应县",
     "cityCode": "1406",
     "provinceCode": "14",
-    "keywords": "应县/应"
+    "keywords": "应县"
   },
   {
     "code": "140623",
@@ -1978,7 +1978,7 @@
     "name": "祁县",
     "cityCode": "1407",
     "provinceCode": "14",
-    "keywords": "祁县/祁"
+    "keywords": "祁县"
   },
   {
     "code": "140728",
@@ -2048,7 +2048,7 @@
     "name": "绛县",
     "cityCode": "1408",
     "provinceCode": "14",
-    "keywords": "绛县/绛"
+    "keywords": "绛县"
   },
   {
     "code": "140827",
@@ -2062,7 +2062,7 @@
     "name": "夏县",
     "cityCode": "1408",
     "provinceCode": "14",
-    "keywords": "夏县/夏"
+    "keywords": "夏县"
   },
   {
     "code": "140829",
@@ -2118,7 +2118,7 @@
     "name": "代县",
     "cityCode": "1409",
     "provinceCode": "14",
-    "keywords": "代县/代"
+    "keywords": "代县"
   },
   {
     "code": "140924",
@@ -2237,7 +2237,7 @@
     "name": "古县",
     "cityCode": "1410",
     "provinceCode": "14",
-    "keywords": "古县/古"
+    "keywords": "古县"
   },
   {
     "code": "141026",
@@ -2258,7 +2258,7 @@
     "name": "吉县",
     "cityCode": "1410",
     "provinceCode": "14",
-    "keywords": "吉县/吉"
+    "keywords": "吉县"
   },
   {
     "code": "141029",
@@ -2279,7 +2279,7 @@
     "name": "隰县",
     "cityCode": "1410",
     "provinceCode": "14",
-    "keywords": "隰县/隰"
+    "keywords": "隰县"
   },
   {
     "code": "141032",
@@ -2293,7 +2293,7 @@
     "name": "蒲县",
     "cityCode": "1410",
     "provinceCode": "14",
-    "keywords": "蒲县/蒲"
+    "keywords": "蒲县"
   },
   {
     "code": "141034",
@@ -2342,14 +2342,14 @@
     "name": "兴县",
     "cityCode": "1411",
     "provinceCode": "14",
-    "keywords": "兴县/兴"
+    "keywords": "兴县"
   },
   {
     "code": "141124",
     "name": "临县",
     "cityCode": "1411",
     "provinceCode": "14",
-    "keywords": "临县/临"
+    "keywords": "临县"
   },
   {
     "code": "141125",
@@ -2370,7 +2370,7 @@
     "name": "岚县",
     "cityCode": "1411",
     "provinceCode": "14",
-    "keywords": "岚县/岚"
+    "keywords": "岚县"
   },
   {
     "code": "141128",
@@ -3539,7 +3539,7 @@
     "name": "义县",
     "cityCode": "2107",
     "provinceCode": "21",
-    "keywords": "义县/义"
+    "keywords": "义县"
   },
   {
     "code": "210781",
@@ -4428,7 +4428,7 @@
     "name": "宾县",
     "cityCode": "2301",
     "provinceCode": "23",
-    "keywords": "宾县/宾"
+    "keywords": "宾县"
   },
   {
     "code": "230126",
@@ -4925,7 +4925,7 @@
     "name": "郊区",
     "cityCode": "2308",
     "provinceCode": "23",
-    "keywords": "郊区/郊"
+    "keywords": "郊区"
   },
   {
     "code": "230822",
@@ -5513,14 +5513,14 @@
     "name": "丰县",
     "cityCode": "3203",
     "provinceCode": "32",
-    "keywords": "丰县/丰"
+    "keywords": "丰县"
   },
   {
     "code": "320322",
     "name": "沛县",
     "cityCode": "3203",
     "provinceCode": "32",
-    "keywords": "沛县/沛"
+    "keywords": "沛县"
   },
   {
     "code": "320324",
@@ -6997,7 +6997,7 @@
     "name": "寿县",
     "cityCode": "3404",
     "provinceCode": "34",
-    "keywords": "寿县/寿"
+    "keywords": "寿县"
   },
   {
     "code": "340503",
@@ -7039,7 +7039,7 @@
     "name": "和县",
     "cityCode": "3405",
     "provinceCode": "34",
-    "keywords": "和县/和"
+    "keywords": "和县"
   },
   {
     "code": "340602",
@@ -7088,7 +7088,7 @@
     "name": "郊区",
     "cityCode": "3407",
     "provinceCode": "34",
-    "keywords": "郊区/郊"
+    "keywords": "郊区"
   },
   {
     "code": "340722",
@@ -7200,7 +7200,7 @@
     "name": "歙县",
     "cityCode": "3410",
     "provinceCode": "34",
-    "keywords": "歙县/歙"
+    "keywords": "歙县"
   },
   {
     "code": "341022",
@@ -7214,7 +7214,7 @@
     "name": "黟县",
     "cityCode": "3410",
     "provinceCode": "34",
-    "keywords": "黟县/黟"
+    "keywords": "黟县"
   },
   {
     "code": "341024",
@@ -7382,7 +7382,7 @@
     "name": "萧县",
     "cityCode": "3413",
     "provinceCode": "34",
-    "keywords": "萧县/萧"
+    "keywords": "萧县"
   },
   {
     "code": "341323",
@@ -7396,7 +7396,7 @@
     "name": "泗县",
     "cityCode": "3413",
     "provinceCode": "34",
-    "keywords": "泗县/泗"
+    "keywords": "泗县"
   },
   {
     "code": "341371",
@@ -7536,7 +7536,7 @@
     "name": "泾县",
     "cityCode": "3418",
     "provinceCode": "34",
-    "keywords": "泾县/泾"
+    "keywords": "泾县"
   },
   {
     "code": "341824",
@@ -7795,7 +7795,7 @@
     "name": "沙县",
     "cityCode": "3504",
     "provinceCode": "35",
-    "keywords": "沙县/沙"
+    "keywords": "沙县"
   },
   {
     "code": "350428",
@@ -9566,7 +9566,7 @@
     "name": "莒县",
     "cityCode": "3711",
     "provinceCode": "37",
-    "keywords": "莒县/莒"
+    "keywords": "莒县"
   },
   {
     "code": "371171",
@@ -9629,7 +9629,7 @@
     "name": "费县",
     "cityCode": "3713",
     "provinceCode": "37",
-    "keywords": "费县/费"
+    "keywords": "费县"
   },
   {
     "code": "371326",
@@ -9783,7 +9783,7 @@
     "name": "莘县",
     "cityCode": "3715",
     "provinceCode": "37",
-    "keywords": "莘县/莘"
+    "keywords": "莘县"
   },
   {
     "code": "371524",
@@ -9797,7 +9797,7 @@
     "name": "冠县",
     "cityCode": "3715",
     "provinceCode": "37",
-    "keywords": "冠县/冠"
+    "keywords": "冠县"
   },
   {
     "code": "371526",
@@ -9881,14 +9881,14 @@
     "name": "曹县",
     "cityCode": "3717",
     "provinceCode": "37",
-    "keywords": "曹县/曹"
+    "keywords": "曹县"
   },
   {
     "code": "371722",
     "name": "单县",
     "cityCode": "3717",
     "provinceCode": "37",
-    "keywords": "单县/单"
+    "keywords": "单县"
   },
   {
     "code": "371723",
@@ -10084,7 +10084,7 @@
     "name": "杞县",
     "cityCode": "4102",
     "provinceCode": "41",
-    "keywords": "杞县/杞"
+    "keywords": "杞县"
   },
   {
     "code": "410222",
@@ -10175,7 +10175,7 @@
     "name": "嵩县",
     "cityCode": "4103",
     "provinceCode": "41",
-    "keywords": "嵩县/嵩"
+    "keywords": "嵩县"
   },
   {
     "code": "410326",
@@ -10259,7 +10259,7 @@
     "name": "叶县",
     "cityCode": "4104",
     "provinceCode": "41",
-    "keywords": "叶县/叶"
+    "keywords": "叶县"
   },
   {
     "code": "410423",
@@ -10273,7 +10273,7 @@
     "name": "郏县",
     "cityCode": "4104",
     "provinceCode": "41",
-    "keywords": "郏县/郏"
+    "keywords": "郏县"
   },
   {
     "code": "410471",
@@ -10350,7 +10350,7 @@
     "name": "滑县",
     "cityCode": "4105",
     "provinceCode": "41",
-    "keywords": "滑县/滑"
+    "keywords": "滑县"
   },
   {
     "code": "410527",
@@ -10399,14 +10399,14 @@
     "name": "浚县",
     "cityCode": "4106",
     "provinceCode": "41",
-    "keywords": "浚县/浚"
+    "keywords": "浚县"
   },
   {
     "code": "410622",
     "name": "淇县",
     "cityCode": "4106",
     "provinceCode": "41",
-    "keywords": "淇县/淇"
+    "keywords": "淇县"
   },
   {
     "code": "410671",
@@ -10574,7 +10574,7 @@
     "name": "温县",
     "cityCode": "4108",
     "provinceCode": "41",
-    "keywords": "温县/温"
+    "keywords": "温县"
   },
   {
     "code": "410871",
@@ -10623,7 +10623,7 @@
     "name": "范县",
     "cityCode": "4109",
     "provinceCode": "41",
-    "keywords": "范县/范"
+    "keywords": "范县"
   },
   {
     "code": "410927",
@@ -10924,7 +10924,7 @@
     "name": "睢县",
     "cityCode": "4114",
     "provinceCode": "41",
-    "keywords": "睢县/睢"
+    "keywords": "睢县"
   },
   {
     "code": "411423",
@@ -11008,7 +11008,7 @@
     "name": "新县",
     "cityCode": "4115",
     "provinceCode": "41",
-    "keywords": "新县/新"
+    "keywords": "新县"
   },
   {
     "code": "411524",
@@ -11043,7 +11043,7 @@
     "name": "息县",
     "cityCode": "4115",
     "provinceCode": "41",
-    "keywords": "息县/息"
+    "keywords": "息县"
   },
   {
     "code": "411571",
@@ -11393,7 +11393,7 @@
     "name": "房县",
     "cityCode": "4203",
     "provinceCode": "42",
-    "keywords": "房县/房"
+    "keywords": "房县"
   },
   {
     "code": "420381",
@@ -11855,7 +11855,7 @@
     "name": "随县",
     "cityCode": "4213",
     "provinceCode": "42",
-    "keywords": "随县/随"
+    "keywords": "随县"
   },
   {
     "code": "421381",
@@ -12051,7 +12051,7 @@
     "name": "攸县",
     "cityCode": "4302",
     "provinceCode": "43",
-    "keywords": "攸县/攸"
+    "keywords": "攸县"
   },
   {
     "code": "430224",
@@ -12429,7 +12429,7 @@
     "name": "澧县",
     "cityCode": "4307",
     "provinceCode": "43",
-    "keywords": "澧县/澧"
+    "keywords": "澧县"
   },
   {
     "code": "430724",
@@ -12513,7 +12513,7 @@
     "name": "南县",
     "cityCode": "4309",
     "provinceCode": "43",
-    "keywords": "南县/南"
+    "keywords": "南县"
   },
   {
     "code": "430922",
@@ -12667,7 +12667,7 @@
     "name": "道县",
     "cityCode": "4311",
     "provinceCode": "43",
-    "keywords": "道县/道"
+    "keywords": "道县"
   },
   {
     "code": "431125",
@@ -13521,7 +13521,7 @@
     "name": "城区",
     "cityCode": "4415",
     "provinceCode": "44",
-    "keywords": "城区/城"
+    "keywords": "城区"
   },
   {
     "code": "441521",
@@ -13857,7 +13857,7 @@
     "name": "横县",
     "cityCode": "4501",
     "provinceCode": "45",
-    "keywords": "横县/横"
+    "keywords": "横县"
   },
   {
     "code": "450202",
@@ -14081,7 +14081,7 @@
     "name": "藤县",
     "cityCode": "4504",
     "provinceCode": "45",
-    "keywords": "藤县/藤"
+    "keywords": "藤县"
   },
   {
     "code": "450423",
@@ -14235,7 +14235,7 @@
     "name": "容县",
     "cityCode": "4509",
     "provinceCode": "45",
-    "keywords": "容县/容"
+    "keywords": "容县"
   },
   {
     "code": "450922",
@@ -14949,7 +14949,7 @@
     "name": "忠县",
     "cityCode": "5002",
     "provinceCode": "50",
-    "keywords": "忠县/忠"
+    "keywords": "忠县"
   },
   {
     "code": "500235",
@@ -15180,7 +15180,7 @@
     "name": "荣县",
     "cityCode": "5103",
     "provinceCode": "51",
-    "keywords": "荣县/荣"
+    "keywords": "荣县"
   },
   {
     "code": "510322",
@@ -15194,14 +15194,14 @@
     "name": "东区",
     "cityCode": "5104",
     "provinceCode": "51",
-    "keywords": "东区/东"
+    "keywords": "东区"
   },
   {
     "code": "510403",
     "name": "西区",
     "cityCode": "5104",
     "provinceCode": "51",
-    "keywords": "西区/西"
+    "keywords": "西区"
   },
   {
     "code": "510411",
@@ -15250,7 +15250,7 @@
     "name": "泸县",
     "cityCode": "5105",
     "provinceCode": "51",
-    "keywords": "泸县/泸"
+    "keywords": "泸县"
   },
   {
     "code": "510522",
@@ -15726,14 +15726,14 @@
     "name": "高县",
     "cityCode": "5115",
     "provinceCode": "51",
-    "keywords": "高县/高"
+    "keywords": "高县"
   },
   {
     "code": "511526",
     "name": "珙县",
     "cityCode": "5115",
     "provinceCode": "51",
-    "keywords": "珙县/珙"
+    "keywords": "珙县"
   },
   {
     "code": "511527",
@@ -15838,7 +15838,7 @@
     "name": "渠县",
     "cityCode": "5117",
     "provinceCode": "51",
-    "keywords": "渠县/渠"
+    "keywords": "渠县"
   },
   {
     "code": "511771",
@@ -15992,14 +15992,14 @@
     "name": "理县",
     "cityCode": "5132",
     "provinceCode": "51",
-    "keywords": "理县/理"
+    "keywords": "理县"
   },
   {
     "code": "513223",
     "name": "茂县",
     "cityCode": "5132",
     "provinceCode": "51",
-    "keywords": "茂县/茂"
+    "keywords": "茂县"
   },
   {
     "code": "513224",
@@ -17385,7 +17385,7 @@
     "name": "云县",
     "cityCode": "5309",
     "provinceCode": "53",
-    "keywords": "云县/云"
+    "keywords": "云县"
   },
   {
     "code": "530923",
@@ -17756,7 +17756,7 @@
     "name": "芒市",
     "cityCode": "5331",
     "provinceCode": "53",
-    "keywords": "芒市/芒"
+    "keywords": "芒市"
   },
   {
     "code": "533122",
@@ -18162,7 +18162,7 @@
     "name": "朗县",
     "cityCode": "5404",
     "provinceCode": "54",
-    "keywords": "朗县/朗"
+    "keywords": "朗县"
   },
   {
     "code": "540502",
@@ -18295,7 +18295,7 @@
     "name": "索县",
     "cityCode": "5406",
     "provinceCode": "54",
-    "keywords": "索县/索"
+    "keywords": "索县"
   },
   {
     "code": "540627",
@@ -18540,14 +18540,14 @@
     "name": "眉县",
     "cityCode": "6103",
     "provinceCode": "61",
-    "keywords": "眉县/眉"
+    "keywords": "眉县"
   },
   {
     "code": "610327",
     "name": "陇县",
     "cityCode": "6103",
     "provinceCode": "61",
-    "keywords": "陇县/陇"
+    "keywords": "陇县"
   },
   {
     "code": "610328",
@@ -18568,7 +18568,7 @@
     "name": "凤县",
     "cityCode": "6103",
     "provinceCode": "61",
-    "keywords": "凤县/凤"
+    "keywords": "凤县"
   },
   {
     "code": "610331",
@@ -18617,7 +18617,7 @@
     "name": "乾县",
     "cityCode": "6104",
     "provinceCode": "61",
-    "keywords": "乾县/乾"
+    "keywords": "乾县"
   },
   {
     "code": "610425",
@@ -18806,7 +18806,7 @@
     "name": "富县",
     "cityCode": "6106",
     "provinceCode": "61",
-    "keywords": "富县/富"
+    "keywords": "富县"
   },
   {
     "code": "610629",
@@ -18869,7 +18869,7 @@
     "name": "洋县",
     "cityCode": "6107",
     "provinceCode": "61",
-    "keywords": "洋县/洋"
+    "keywords": "洋县"
   },
   {
     "code": "610724",
@@ -18883,7 +18883,7 @@
     "name": "勉县",
     "cityCode": "6107",
     "provinceCode": "61",
-    "keywords": "勉县/勉"
+    "keywords": "勉县"
   },
   {
     "code": "610726",
@@ -18974,7 +18974,7 @@
     "name": "佳县",
     "cityCode": "6108",
     "provinceCode": "61",
-    "keywords": "佳县/佳"
+    "keywords": "佳县"
   },
   {
     "code": "610829",
@@ -19478,7 +19478,7 @@
     "name": "环县",
     "cityCode": "6210",
     "provinceCode": "62",
-    "keywords": "环县/环"
+    "keywords": "环县"
   },
   {
     "code": "621023",
@@ -19506,7 +19506,7 @@
     "name": "宁县",
     "cityCode": "6210",
     "provinceCode": "62",
-    "keywords": "宁县/宁"
+    "keywords": "宁县"
   },
   {
     "code": "621027",
@@ -19555,14 +19555,14 @@
     "name": "漳县",
     "cityCode": "6211",
     "provinceCode": "62",
-    "keywords": "漳县/漳"
+    "keywords": "漳县"
   },
   {
     "code": "621126",
     "name": "岷县",
     "cityCode": "6211",
     "provinceCode": "62",
-    "keywords": "岷县/岷"
+    "keywords": "岷县"
   },
   {
     "code": "621202",
@@ -19576,14 +19576,14 @@
     "name": "成县",
     "cityCode": "6212",
     "provinceCode": "62",
-    "keywords": "成县/成"
+    "keywords": "成县"
   },
   {
     "code": "621222",
     "name": "文县",
     "cityCode": "6212",
     "provinceCode": "62",
-    "keywords": "文县/文"
+    "keywords": "文县"
   },
   {
     "code": "621223",
@@ -19597,7 +19597,7 @@
     "name": "康县",
     "cityCode": "6212",
     "provinceCode": "62",
-    "keywords": "康县/康"
+    "keywords": "康县"
   },
   {
     "code": "621225",
@@ -19611,14 +19611,14 @@
     "name": "礼县",
     "cityCode": "6212",
     "provinceCode": "62",
-    "keywords": "礼县/礼"
+    "keywords": "礼县"
   },
   {
     "code": "621227",
     "name": "徽县",
     "cityCode": "6212",
     "provinceCode": "62",
-    "keywords": "徽县/徽"
+    "keywords": "徽县"
   },
   {
     "code": "621228",

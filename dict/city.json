@@ -420,12 +420,6 @@
     "name": "大兴安岭地区"
   },
   {
-    "code": "3101",
-    "keywords": "市辖区/辖区",
-    "provinceCode": "31",
-    "name": "市辖区"
-  },
-  {
     "code": "3201",
     "keywords": "南京市/南京",
     "provinceCode": "32",
@@ -1404,12 +1398,6 @@
     "name": "市辖区"
   },
   {
-    "code": "5002",
-    "keywords": "县",
-    "provinceCode": "50",
-    "name": "县"
-  },
-  {
     "code": "5101",
     "keywords": "成都市/成都",
     "provinceCode": "51",
@@ -2032,11 +2020,5 @@
     "keywords": "阿勒泰地区/阿勒泰/阿勒泰市",
     "provinceCode": "65",
     "name": "阿勒泰地区"
-  },
-  {
-    "code": "6590",
-    "keywords": "自治区直辖县级行政区划",
-    "provinceCode": "65",
-    "name": "自治区直辖县级行政区划"
   }
 ]
