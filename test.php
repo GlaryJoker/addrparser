@@ -17,7 +17,7 @@ $arr = explode("\n",$addrs);
 
 use Addrparser\Parser;
 $parser = new Parser();
-
-foreach ($arr as $addr){
+var_dump($parser->setAddress('河南省三门峡市渑池县凯祥新材料有限责任公司')->getAll());
+/*foreach ($arr as $addr){
     var_dump($parser->setAddress($addr)->getAll());
-}
+}*/

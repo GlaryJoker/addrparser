@@ -35,8 +35,6 @@ class Parser
      */
     protected  function parseProvince()
     {
-        $this->resultProvinces = [];
-
         foreach ($this->provinces as $province) {
             $names = explode('/', $province->keywords);
             for ($i = 0; $i < count($names); $i++) {
@@ -58,7 +56,7 @@ class Parser
      */
     protected  function parseCity()
     {
-        $this->resultCities = [];
+
         foreach ($this->cities as $city){
             $keywords = explode('/',$city->keywords);
             $kwLength = count($keywords);
@@ -85,7 +83,7 @@ class Parser
      */
     protected  function parseCounty()
     {
-        $this->resultCounties = [];
+
         foreach ($this->counties as $county){
             $keywords = explode('/',$county->keywords);
             $kwLength = count($keywords);
@@ -110,10 +108,6 @@ class Parser
         return $this;
     }
 
-    protected function parseAll(){
-
-    }
-
     /**
      * 处理
      * @author www.iplayio.cn
@@ -121,10 +115,10 @@ class Parser
      */
     public function getAll(){
         //解析县区
-
         $this->parseCounty();
         $this->parseCity();
         $this->parseProvince();
+
         return [
             'provinces' => $this->getProvince(),
             'cities' => $this->getCity(),
@@ -134,30 +128,45 @@ class Parser
 
     public function getCity(){
 
-        return $this->removeDuplicate($this->resultCities);
+        $cities = $this->removeDuplicate($this->resultCities);
+        $this->resultCities = [];
+
+        return $cities;
     }
 
     public function getCounty(){
-
-        return self::removeDuplicate($this->resultCounties);
+        $counties = $this->removeDuplicate($this->resultCounties);
+        $this->resultCounties = [];
+        return $counties;
     }
 
     public function getProvince(){
-         return $this->resultProvinces;
+         $provinces = $this->removeDuplicate($this->resultProvinces);
+        $this->resultProvinces = [];
+         return $provinces;
     }
 
     protected function removeDuplicate(array $array = []){
+        if(!$array){
+            return [];
+        }
+
+        if(count($array) === 1){
+            return $array;
+        }
+
         $cityCodes = array_unique(array_column($array,'code'));
         $exitsCode = [];
         $resultArray = [];
 
         //先获取score为0的，然后去除其他的，如果没有为0的，返回其他匹配到数字
-        $array = array_filter($array,function($item){
+        $filterArray = array_filter($array,function($item){
             return $item->score === 0;
         });
 
-        if(count($array) === 1){
-            return $array;
+        $rCount = count($filterArray);
+        if($rCount === 1){
+            return $filterArray;
         }
 
         foreach ($array as $city){
@@ -167,6 +176,7 @@ class Parser
                 continue;
             }
         }
+
 
         return $resultArray;
     }
