@@ -102,14 +102,16 @@ class Parser
         foreach ($this->resultCounties as $county){
             $this->resultCities[] = Finder::getCityByCode($county->cityCode);
         }
+
+        foreach ($this->resultCities as $city){
+            $this->resultProvinces[] = Finder::getProvinceByCode($city->cityCode);
+        }
+
         return $this;
     }
 
     protected function parseAll(){
-        $this->parseProvince();
-        $this->parseCounty();
-        $this->parseCity();
-        return $this;
+
     }
 
     /**
@@ -118,16 +120,20 @@ class Parser
      * @since 2021/2/2 12:54
      */
     public function getAll(){
-        $this->parseAll();
+        //解析县区
+
+        $this->parseCounty();
+        $this->parseCity();
+        $this->parseProvince();
         return [
-            'provinces' => $this->resultProvinces,
-            'cities' => $this->resultCities,
-            'counties' => $this->resultCounties,
+            'provinces' => $this->getProvince(),
+            'cities' => $this->getCity(),
+            'counties' => $this->getCounty()
         ];
     }
 
     public function getCity(){
-        $this->parseCity();
+
         return $this->removeDuplicate($this->resultCities);
     }
 
@@ -137,7 +143,7 @@ class Parser
     }
 
     public function getProvince(){
-         return self::removeDuplicate($this->resultProvinces);
+         return $this->resultProvinces;
     }
 
     protected function removeDuplicate(array $array = []){

@@ -19,8 +19,5 @@ use Addrparser\Parser;
 $parser = new Parser();
 
 foreach ($arr as $addr){
-    $a = $parser->setAddress($addr)->getAll();
-    var_dump($a['provinces'][0]->name);
-    var_dump($a['cities'][0]->name);
-    var_dump($a['counties'][0]->name);
+    var_dump($parser->setAddress($addr)->getAll());
 }
