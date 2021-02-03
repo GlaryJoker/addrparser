@@ -17,20 +17,28 @@ $arr = explode("\n",$addrs);
 
 use Addrparser\Extract;
 $parser = new Extract();
-$a = $parser->setAddress('河南省洛阳市洛龙区洛阳师范学院伊滨校区')->parseAll()->getAll();
+//$a = $parser->setAddress('河南省郑州市高新区金梭路银杏路交叉口教育科技产业园南门D栋')->getAll();
 
-//var_dump($parser->parseCounty()->getCounty());
-//var_dump($parser->parseCity()->getCity());
-//var_dump($parser->parseCounty()->getProvince());
-var_dump($a);
-var_dump($parser->getAddress());
 
-$c = \Addrparser\Dict::getCounies();
+var_dump($parser->setAddress('河南省洛阳市老城区洛阳市老城区九都东路300号')->getAll());die;
 
-foreach ($c as $d){
-    if(preg_match('/高新技术产业开发区/',$d->name)){
-        $d->keywords = '高新/'.$d->keywords;
+$cities = explode("\n",file_get_contents(__DIR__.'/test'));
+
+function isTrue(int $count){
+    return $count > 1 || $count === 0;
+}
+$lose = [];
+foreach ($cities as $city){
+    $addr = $parser->setAddress($city)->getAll();
+
+    $countProvince = count($addr['provinces']);
+    $countCity = count($addr['cities']);
+    $counties = count($addr['counties']);
+
+    if( isTrue($countProvince) || isTrue($countCity) || isTrue($counties)){
+        var_dump($city);
     }
+
 }
 
-file_put_contents(__DIR__.'/dict/county.json',json_encode($c,JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_LINE_TERMINATORS|JSON_UNESCAPED_UNICODE));
+print_r($lose);

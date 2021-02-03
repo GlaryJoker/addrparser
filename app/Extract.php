@@ -206,7 +206,7 @@ class Extract
         $result = [
             'provinces' => $this->resultProvinces,
             'cities' => $this->resultCities,
-            'county' => $this->resultCounties
+            'counties' => $this->resultCounties
         ];
 
         $countyConfirmed = $this->countyConfirmed;
