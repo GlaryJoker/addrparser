@@ -90,6 +90,7 @@ class Extract
             $kwLength = count($keywords);
             for($i=0;$i<$kwLength;$i++){
                 if(preg_match('/'.$keywords[$i].'/',$this->address)){
+                    //如果匹配到高新两个字
                     $county->score = $i;
                     $this->resultCounties[] = $county;
                     break;
@@ -98,8 +99,38 @@ class Extract
         }
 
         $this->resultCounties = $this->removeDuplicate($this->resultCounties);
-        //获取到区县，然后获得市，如果省份为空则获得省份。
 
+        //
+
+
+        foreach ($this->resultCounties as $county){
+
+            if(preg_match('/高新/',$county->name)){
+                $tmpName = str_replace('高新技术产业开发区','',$county->name);
+                //获取该城市名字
+                $relatedCities = Finder::searchCity($tmpName);
+
+                foreach ($relatedCities as $relatedCity){
+
+                }
+
+                //如果等于1，则获取到该城市
+                $tmpCityName = str_replace('市','',$relatedCities[0]->name);
+                $countyFullName = $tmpCityName."高新技术产业开发区";
+                $theCounty = Finder::getCountyByName($countyFullName);
+                $tmpCounties[] = $theCounty;
+            }
+        }
+
+        if(isset($tmpCounties)){
+            $this->resultCounties = $tmpCounties;
+        }
+
+
+        //获取到区县，然后获得市，如果省份为空则获得省份。
+        /**
+         * 4个直辖市
+         */
         foreach ($this->resultCounties as $county){
             if($county->cityCode === '3101' || $county->cityCode === '1101'
                 || $county->cityCode === '5001'
