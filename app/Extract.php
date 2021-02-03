@@ -58,6 +58,7 @@ class Extract
         }
 
         $this->resultCounties = $this->removeDuplicate($this->resultCounties);
+
         if(count($this->resultCounties) === 1){
             $this->countyConfirmed = true;
             //如果只有一个区县，则只获取城市、province就就行了
@@ -223,6 +224,21 @@ class Extract
         return $result;
     }
 
+    /**
+     * 比较单词之间相似
+     * @author www.iplayio.cn
+     * @since 2021/2/3 18:25
+     */
+    protected function compareWords(array $words){
+        foreach ($words as $index => $word){
+            $word->str_length = mb_strlen($word->name);
+        }
+        $last_names = array_column($words,'str_length');
+        array_multisort($last_names,SORT_DESC,$words);
+
+        return [$words[0]];
+    }
+
     protected function removeDuplicate(array $array = [])
     {
         if (!$array) {
@@ -241,6 +257,7 @@ class Extract
         $filterArray = array_filter($array, function ($item) {
             return $item->score === 0;
         });
+        $filterArray = $this->compareWords($filterArray);
 
         $rCount = count($filterArray);
         if ($rCount === 1) {

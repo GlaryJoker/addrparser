@@ -15,12 +15,28 @@ $addrs = '河南省三门峡市渑池县凯祥新材料有限责任公司
 $arr = explode("\n",$addrs);
 
 
+/*function strSplit($string){
+    $strLength = mb_strlen($string);
+    $arr = [];
+    for ($i=0;$i<$strLength;$i++){
+        $arr[] = mb_substr($string,$i,1);
+    }
+    return $arr;
+}
+$address = '河南省洛阳市老城区洛阳市老城区九都东路300号';
+$str1 = '老城区';
+$str2 = '城区';
+
+
+die;*/
+
+
 use Addrparser\Extract;
 $parser = new Extract();
-//$a = $parser->setAddress('河南省郑州市高新区金梭路银杏路交叉口教育科技产业园南门D栋')->getAll();
+$a = $parser->setAddress('福建省福州市鼓楼区置地广场18楼')->getAll();
 
 
-var_dump($parser->setAddress('河南省洛阳市老城区洛阳市老城区九都东路300号')->getAll());die;
+var_dump($a);die;
 
 $cities = explode("\n",file_get_contents(__DIR__.'/test'));
 
