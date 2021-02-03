@@ -17,7 +17,7 @@ $arr = explode("\n",$addrs);
 
 use Addrparser\Extract;
 $parser = new Extract();
-$a = $parser->setAddress('河南省濮阳市仁爱眼科配镜有限公司')->parseAll()->getAll();
+$a = $parser->setAddress('广东省广州市黄埔区云埔工业区埔北路22号')->parseAll()->getAll();
 
 //var_dump($parser->parseCounty()->getCounty());
 //var_dump($parser->parseCity()->getCity());
