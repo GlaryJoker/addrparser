@@ -62,27 +62,4 @@ class Finder
         }
         return $result;
     }
-
-    /**
-     * @param string $countyCode
-     * @author www.iplayio.cn
-     * @since 2021/2/1 12:14
-     */
-    public static function getParentsOfCountyCode(string $countyCode)
-    {
-        Dict::getCounies();
-    }
-
-    /**
-     * 根据cityCode获取省份
-     * @param string $cityCode
-     * @author www.iplayio.cn
-     * @since 2021/2/1 12:02
-     */
-    public static function getParentsOfCity(string $cityCode)
-    {
-
-    }
-
-
 }
