@@ -1392,12 +1392,6 @@
     "name": "省直辖县级行政区划"
   },
   {
-    "code": "5001",
-    "keywords": "市辖区/辖区",
-    "provinceCode": "50",
-    "name": "市辖区"
-  },
-  {
     "code": "5101",
     "keywords": "成都市/成都",
     "provinceCode": "51",
