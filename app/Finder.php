@@ -62,4 +62,14 @@ class Finder
         }
         return $result;
     }
+
+    /**
+     * 根据关键字搜索城市
+     * @param string $query
+     * @author www.iplayio.cn
+     * @since 2021/2/3 10:42
+     */
+    public static function searchCity(string $query){
+
+    }
 }

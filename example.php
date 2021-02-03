@@ -17,10 +17,20 @@ $arr = explode("\n",$addrs);
 
 use Addrparser\Extract;
 $parser = new Extract();
-$a = $parser->setAddress('广东省广州市黄埔区云埔工业区埔北路22号')->parseAll()->getAll();
+$a = $parser->setAddress('河南省洛阳市洛龙区洛阳师范学院伊滨校区')->parseAll()->getAll();
 
 //var_dump($parser->parseCounty()->getCounty());
 //var_dump($parser->parseCity()->getCity());
 //var_dump($parser->parseCounty()->getProvince());
 var_dump($a);
 var_dump($parser->getAddress());
+
+$c = \Addrparser\Dict::getCounies();
+
+foreach ($c as $d){
+    if(preg_match('/高新技术产业开发区/',$d->name)){
+        $d->keywords = '高新/'.$d->keywords;
+    }
+}
+
+file_put_contents(__DIR__.'/dict/county.json',json_encode($c,JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_LINE_TERMINATORS|JSON_UNESCAPED_UNICODE));
