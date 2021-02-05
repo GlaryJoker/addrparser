@@ -57,7 +57,8 @@ class Extract
             }
         }
 
-        $this->resultCounties = $this->removeDuplicate($this->resultCounties);
+        $this->resultCounties = Duplicate::removeDuplicate($this->resultCounties);
+
 
         if(count($this->resultCounties) === 1){
             $this->countyConfirmed = true;
@@ -71,7 +72,23 @@ class Extract
             return $this;
         }
 
-        //
+        //如果区或者县名字重复了，则抓城市
+        $this->parseCity();
+        $dupCities = $this->resultCities;
+        $dupCities = Duplicate::removeDuplicate($dupCities);
+
+        foreach ($this->resultCounties as $county1){
+
+            if($county1->cityCode === $dupCities[0]->code){
+                $this->resultCounties = [$county1];
+                $this->resultCities = [$dupCities];
+                $this->countyConfirmed = true;
+                $this->cityConfirmed = true;
+                $theCity = $dupCities[0];
+                break;
+            }
+        }
+
 
         foreach ($this->resultCounties as $county) {
 
@@ -110,16 +127,17 @@ class Extract
         /**
          * 4个直辖市
          */
-        foreach ($this->resultCounties as $county) {
-            if ($county->cityCode === '3101' || $county->cityCode === '1101'
-                || $county->cityCode === '5001'
-                || $county->cityCode === '1201'
+        foreach ($this->resultCounties as $county2) {
+            if ($county2->cityCode === '3101' || $county2->cityCode === '1101'
+                || $county2->cityCode === '5001'
+                || $county2->cityCode === '1201'
             ) {
-                $this->resultCities[] = Finder::getProvinceByCode($county->provinceCode);
+                $this->resultCities[] = Finder::getProvinceByCode($county2->provinceCode);
             } else {
-                $this->resultCities[] = Finder::getCityByCode($county->cityCode);
+                $this->resultCities[] = Finder::getCityByCode($county2->cityCode);
             }
         }
+
 
         foreach ($this->resultCities as $city) {
             $this->resultProvinces[] = Finder::getProvinceByCode($city->cityCode);
@@ -139,6 +157,27 @@ class Extract
             return $this;
         }
 
+        if(preg_match('/上海/',$this->address)){
+            $this->resultCities = Finder::searchCity('上海');
+            $this->cityConfirmed = true;
+        }
+        if(preg_match('/北京/',$this->address)){
+            $this->resultCities = Finder::searchCity('北京');
+            $this->cityConfirmed = true;
+        }
+        if(preg_match('/重庆/',$this->address)){
+            $this->resultCities = Finder::searchCity('重庆');
+            $this->cityConfirmed = true;
+        }
+        if(preg_match('/天津/',$this->address)){
+            $this->resultCities = Finder::searchCity('天津');
+            $this->cityConfirmed = true;
+        }
+
+        if($this->cityConfirmed){
+            return $this;
+        }
+
         foreach ($this->cities as $city) {
             $keywords = explode('/', $city->keywords);
             $kwLength = count($keywords);
@@ -150,7 +189,7 @@ class Extract
                 }
             }
         }
-        $this->resultCities = $this->removeDuplicate($this->resultCities);
+        $this->resultCities = Duplicate::removeDuplicate($this->resultCities);
 
         if(count($this->resultCities) === 1){
             $this->cityConfirmed = true;
@@ -190,7 +229,7 @@ class Extract
                 }
             }
         }
-        $this->resultProvinces = $this->removeDuplicate($this->resultProvinces);
+        $this->resultProvinces = Duplicate::removeDuplicate($this->resultProvinces);
         if(count($this->resultProvinces) === 1){
             $this->provinceConfirmed = true;
         }
@@ -224,56 +263,7 @@ class Extract
         return $result;
     }
 
-    /**
-     * 比较单词之间相似
-     * @author www.iplayio.cn
-     * @since 2021/2/3 18:25
-     */
-    protected function compareWords(array $words){
-        foreach ($words as $index => $word){
-            $word->str_length = mb_strlen($word->name);
-        }
-        $last_names = array_column($words,'str_length');
-        array_multisort($last_names,SORT_DESC,$words);
 
-        return [$words[0]];
-    }
-
-    protected function removeDuplicate(array $array = [])
-    {
-        if (!$array) {
-            return [];
-        }
-
-        if (count($array) === 1) {
-            return $array;
-        }
-
-        $cityCodes = array_unique(array_column($array, 'code'));
-        $exitsCode = [];
-        $resultArray = [];
-
-        //先获取score为0的，然后去除其他的，如果没有为0的，返回其他匹配到数字
-        $filterArray = array_filter($array, function ($item) {
-            return $item->score === 0;
-        });
-        $filterArray = $this->compareWords($filterArray);
-
-        $rCount = count($filterArray);
-        if ($rCount === 1) {
-            return $filterArray;
-        }
-
-        foreach ($array as $city) {
-            if (in_array($city->code, $cityCodes) && !in_array($city->code, $exitsCode)) {
-                array_push($exitsCode, $city->code);
-                $resultArray[] = $city;
-                continue;
-            }
-        }
-
-        return $resultArray;
-    }
 
     public function getAddress()
     {

@@ -1,5 +1,29 @@
 [
   {
+    "code": "1101",
+    "name": "北京市",
+    "provinceCode": "11",
+    "keywords": "北京市/北京"
+  },
+  {
+    "code": "1201",
+    "keywords": "天津市/天津",
+    "name": "天津市",
+    "provinceCode": "12"
+  },
+  {
+    "code": "3101",
+    "keywords": "上海市/上海",
+    "name": "上海市",
+    "provinceCode": "31"
+  },
+  {
+    "code": "5001",
+    "keywords": "重庆市/重庆",
+    "name": "重庆市",
+    "provinceCode": "50"
+  },
+  {
     "code": "1301",
     "keywords": "石家庄市/石家庄",
     "provinceCode": "13",

@@ -33,12 +33,13 @@ die;*/
 
 use Addrparser\Extract;
 $parser = new Extract();
-$a = $parser->setAddress('福建省福州市鼓楼区置地广场18楼')->getAll();
+//江苏省南京市鼓楼区燕江路201号钢铁数码港大厦1号楼1809室
+$a = $parser->setAddress('河南省洛阳市瀍河区')->getAll();
 
 
 var_dump($a);die;
 
-$cities = explode("\n",file_get_contents(__DIR__.'/test'));
+$cities = explode("\n",file_get_contents(__DIR__.'/wrong'));
 
 function isTrue(int $count){
     return $count > 1 || $count === 0;

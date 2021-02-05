@@ -10157,6 +10157,20 @@
     "keywords": "洛龙区/洛龙"
   },
   {
+    "code": "410312",
+    "name": "伊滨区",
+    "cityCode": "4103",
+    "provinceCode": "41",
+    "keywords": "伊滨区/伊滨"
+  },
+  {
+    "code": "410313",
+    "name": "瀍河区",
+    "cityCode": "4103",
+    "provinceCode": "41",
+    "keywords": "瀍河区/瀍河"
+  },
+  {
     "code": "410322",
     "name": "孟津县",
     "cityCode": "4103",
