@@ -31,13 +31,13 @@ $str2 = '城区';
 die;*/
 
 
-use Addrparser\Extract;
-$parser = new Extract();
+use IPlayIO\AddrParser;
+$parser = new AddrParser();
 //江苏省南京市鼓楼区燕江路201号钢铁数码港大厦1号楼1809室
-$a = $parser->setAddress('河南省洛阳市瀍河区')->getAll();
+$a = $parser->setAddress('河南省/郑州市/荥阳市/正上豪布斯卡')->getAll();
 
 
-var_dump($a);die;
+/*var_dump($a);die;*/
 
 $cities = explode("\n",file_get_contents(__DIR__.'/wrong'));
 
@@ -57,5 +57,3 @@ foreach ($cities as $city){
     }
 
 }
-
-print_r($lose);

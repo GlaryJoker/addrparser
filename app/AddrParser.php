@@ -1,8 +1,8 @@
 <?php
 
-namespace Addrparser;
+namespace IPlayIO;
 
-class Extract
+class AddrParser
 {
     protected $address = '';
 
@@ -24,9 +24,9 @@ class Extract
 
     public function __construct()
     {
-        $this->provinces = Dict::getProvinces();
-        $this->cities = Dict::getCities();
-        $this->counties = Dict::getCounies();
+        $this->provinces = AddrDict::getProvinces();
+        $this->cities = AddrDict::getCities();
+        $this->counties = AddrDict::getCounies();
     }
 
     public function setAddress($address)
@@ -64,8 +64,8 @@ class Extract
             $this->countyConfirmed = true;
             //如果只有一个区县，则只获取城市、province就就行了
 
-            $this->resultCities = [Finder::getCityByCode($this->resultCounties[0]->cityCode)];
-            $this->resultProvinces = [Finder::getProvinceByCode($this->resultCities[0]->provinceCode)];
+            $this->resultCities = [AddrFinder::getCityByCode($this->resultCounties[0]->cityCode)];
+            $this->resultProvinces = [AddrFinder::getProvinceByCode($this->resultCities[0]->provinceCode)];
 
             $this->cityConfirmed = true;
             $this->provinceConfirmed = true;
@@ -95,7 +95,7 @@ class Extract
             if (preg_match('/高新/', $county->name)) {
                 $tmpName = str_replace('高新技术产业开发区', '', $county->name);
                 //获取该城市名字
-                $relatedCities = Finder::searchCity($tmpName);
+                $relatedCities = AddrFinder::searchCity($tmpName);
                 foreach ($relatedCities as $cityIndex => $relatedCity) {
                     $keywords = explode('/', $relatedCity->keywords);
                     foreach ($keywords as $keyword) {
@@ -118,7 +118,7 @@ class Extract
         if($this->countyConfirmed && $this->cityConfirmed){
 
             $this->provinceConfirmed = true;
-            $theProvince = Finder::getProvinceByCode($theCity->provinceCode);
+            $theProvince = AddrFinder::getProvinceByCode($theCity->provinceCode);
             $this->resultProvinces = [$theProvince];
             return $this;
         }
@@ -132,15 +132,15 @@ class Extract
                 || $county2->cityCode === '5001'
                 || $county2->cityCode === '1201'
             ) {
-                $this->resultCities[] = Finder::getProvinceByCode($county2->provinceCode);
+                $this->resultCities[] = AddrFinder::getProvinceByCode($county2->provinceCode);
             } else {
-                $this->resultCities[] = Finder::getCityByCode($county2->cityCode);
+                $this->resultCities[] = AddrFinder::getCityByCode($county2->cityCode);
             }
         }
 
 
         foreach ($this->resultCities as $city) {
-            $this->resultProvinces[] = Finder::getProvinceByCode($city->cityCode);
+            $this->resultProvinces[] = AddrFinder::getProvinceByCode($city->cityCode);
         }
 
         return $this;
@@ -158,19 +158,19 @@ class Extract
         }
 
         if(preg_match('/上海/',$this->address)){
-            $this->resultCities = Finder::searchCity('上海');
+            $this->resultCities = AddrFinder::searchCity('上海');
             $this->cityConfirmed = true;
         }
         if(preg_match('/北京/',$this->address)){
-            $this->resultCities = Finder::searchCity('北京');
+            $this->resultCities = AddrFinder::searchCity('北京');
             $this->cityConfirmed = true;
         }
         if(preg_match('/重庆/',$this->address)){
-            $this->resultCities = Finder::searchCity('重庆');
+            $this->resultCities = AddrFinder::searchCity('重庆');
             $this->cityConfirmed = true;
         }
         if(preg_match('/天津/',$this->address)){
-            $this->resultCities = Finder::searchCity('天津');
+            $this->resultCities = AddrFinder::searchCity('天津');
             $this->cityConfirmed = true;
         }
 
@@ -194,12 +194,12 @@ class Extract
         if(count($this->resultCities) === 1){
             $this->cityConfirmed = true;
             $this->provinceConfirmed = true;
-            $this->resultProvinces = [Finder::getProvinceByCode($this->resultCities[0]->provinceCode)];
+            $this->resultProvinces = [AddrFinder::getProvinceByCode($this->resultCities[0]->provinceCode)];
             return $this;
         }
 
         foreach ($this->resultCities as $city) {
-            $this->resultProvinces[] = Finder::getProvinceByCode($city->provinceCode);
+            $this->resultProvinces[] = AddrFinder::getProvinceByCode($city->provinceCode);
         }
 
         return $this;

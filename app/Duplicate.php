@@ -1,5 +1,5 @@
 <?php
-namespace addrparser;
+namespace IPlayIO;
 
 class Duplicate{
 
